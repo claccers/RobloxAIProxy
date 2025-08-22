@@ -1,16 +1,15 @@
 // server.js
 const express = require("express");
 const bodyParser = require("body-parser");
-const { Configuration, OpenAIApi } = require("openai");
+const OpenAI = require("openai"); // <- fixed import
 
 const app = express();
 app.use(bodyParser.json());
 
 // OpenAI API key from environment variable
-const configuration = new Configuration({
+const openai = new OpenAI.OpenAIApi({
   apiKey: process.env.OPENAI_API_KEY
 });
-const openai = new OpenAIApi(configuration);
 
 // Shared secret to validate Roblox requests
 const SHARED_SECRET = process.env.ROBLOX_SHARED_SECRET || "secret123";
